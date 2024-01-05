@@ -2,7 +2,9 @@
 
 # Question 1
 1. Invoice Per Country
+
 **CODE**
+
 SELECT 
     co.country_name, 
     COUNT(*), 
