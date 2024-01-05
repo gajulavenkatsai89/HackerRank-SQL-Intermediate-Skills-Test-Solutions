@@ -1,50 +1,14 @@
 # HackerRank-SQL-Intermediate-Skills-Test-Solutions
 
-# Question 1
-1. Invoice Per Country
+# Question 1: Invoice Per Country
 
-**CODE**
+**Objective**
 
-SELECT 
-    co.country_name, 
-    COUNT(*), 
-    ROUND(AVG(i.total_price), 6)
-FROM 
-    country AS co, 
-    city AS ci, 
-    customer AS cu, 
-    invoice AS i
-WHERE 
-    co.id = ci.country_id AND 
-    ci.id = cu.city_id AND 
-    cu.id = i.customer_id
-GROUP BY 
-    co.country_name
-HAVING 
-    AVG(i.total_price) > (SELECT AVG(total_price) FROM invoice);
+Retrieve information about each country's name, the count of customers, and the average total price of their invoices. Filter the results to include only countries with an average total price greater than the overall average total price across all countries.
 
+# Question 2: Product Sales Per City
 
-2. Product Sales Per City
+**Objective**
 
-**Code**
-
-SELECT 
-    ci.city_name, 
-    pr.product_name, 
-    ROUND(SUM(ii.line_total_price), 2) AS tot
-FROM 
-    city ci, 
-    customer cu, 
-    invoice i, 
-    invoice_item ii, 
-    product pr 
-WHERE 
-    ci.id = cu.city_id AND 
-    cu.id = i.customer_id AND 
-    i.id = ii.invoice_id AND 
-    ii.product_id = pr.id 
-GROUP BY 
-    ci.city_name, pr.product_name 
-ORDER BY 
-    tot DESC, ci.city_name, pr.product_name;
+Retrieve information about the total line prices for each product in each city, sorted in descending order of the total line prices.
 
